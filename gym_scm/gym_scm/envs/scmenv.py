@@ -332,13 +332,18 @@ class scmEnv(gym.Env):
             done=True
             info["final_score"]=self.total_cost()
             print("episode finished")
-            print("final score is:",info["final_score"])
-            
-
+            print("final score is:",info["final_score"]
         return nextstate, reward, done, info
-    def reset(self,
-    demand=[15, 10, 8, 14, 9, 3, 13, 2, 13, 11, 3, 4, 6, 11, 15, 12, 15, 4, 12, 3, 13, 10, 15, 15, 3, 11, 1, 13, 10, 10, 0, 0, 8, 0, 14]
-    , leadTime=[2, 0, 2, 4, 4, 4, 0, 2, 4, 1, 1, 0, 0, 1, 1, 0, 1, 1, 2, 1, 1, 1, 4, 2, 2, 1, 4, 3, 4, 1, 4, 0, 3, 3, 4]):
+    
+    def getDemandfromFn(a, b):
+    demand = np.random.uniform(a, b, 35)).tolist()
+    return np.round(demand)
+    
+    def getLeadTimefromFn(a, b):
+    leadtime = np.random.uniform(a, b, 35)).tolist()
+    return np.round(leadtime)
+
+    def reset(self, getDemandfromFn(0, 15), getLeadTimefromFn(0, 4)):
         # First Week Conditions
         self.storage_retailer = np.zeros((40, 13))
         self.storage_wholesaler = np.zeros((40, 13))
